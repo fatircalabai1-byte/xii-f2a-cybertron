@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>XII F2A CYBERTRON | Official Class Website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root{
+    --navy:#0f2744;--navy-light:#1e3a5f;--navy-dark:#0a1a2e;
+    --cyan:#00d4ff;--cyan-dark:#00b4d8;--gold:#ffd700;--gold-dark:#fbbf24;
+    --bg:var(--navy-dark);--bg-2:var(--navy);
+    --surface:rgba(255,255,255,0.04);--surface-2:rgba(255,255,255,0.08);
+    --border:rgba(0,212,255,0.15);--border-strong:rgba(0,212,255,0.3);
+    --text:#f0f9ff;--text-soft:#94a3b8;--text-muted:#64748b;
+    --gradient:linear-gradient(135deg,var(--cyan) 0%,var(--gold) 100%);
+    --role-ketua:var(--gold);--role-wakil:var(--cyan);--role-sekben:#60a5fa;--role-anggota:#94a3b8;
+  }
+  [data-theme="light"]{
+    --bg:#f0f9ff;--bg-2:#ffffff;
+    --surface:rgba(15,39,68,0.04);--surface-2:rgba(15,39,68,0.08);
+    --border:rgba(15,39,68,0.12);--border-strong:rgba(15,39,68,0.2);
+    --text:#0f2744;--text-soft:#475569;--text-muted:#3f3f46;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .5s, color .5s;line-height:1.6;}
+
+  .bg-mesh{position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--bg);}
+  .mesh-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.4;animation:drift 25s infinite ease-in-out;}
+  .mesh-orb:nth-child(1){width:600px;height:600px;background:var(--navy-light);top:-200px;left:-150px;}
+  .mesh-orb:nth-child(2){width:500px;height:500px;background:var(--cyan);bottom:-200px;right:-150px;animation-delay:-8s;opacity:.2;}
+  .mesh-orb:nth-child(3){width:450px;height:450px;background:var(--gold);top:40%;left:40%;animation-delay:-15s;opacity:.15;}
+  @keyframes drift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(60px,-40px) scale(1.1);}66%{transform:translate(-50px,50px) scale(.95);}}
+  .noise{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .stars{position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(2px 2px at 20px 30px, var(--cyan), transparent),radial-gradient(2px 2px at 40px 70px, var(--gold), transparent),radial-gradient(1px 1px at 90px 40px, var(--cyan), transparent),radial-gradient(1px 1px at 130px 80px, var(--gold), transparent),radial-gradient(2px 2px at 160px 30px, var(--cyan), transparent);background-size:200px 100px;opacity:.3;animation:twinkle 4s infinite;}
+  @keyframes twinkle{0%,100%{opacity:.3;}50%{opacity:.5;}}
+
+  #loader{position:fixed;inset:0;background:var(--navy-dark);z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .6s, visibility .6s;}
+  #loader.hide{opacity:0;visibility:hidden;}
+  .loader-mark{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.5rem;letter-spacing:.5em;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;animation:fade 1.5s infinite ease-in-out;}
+  @keyframes fade{0%,100%{opacity:.4;}50%{opacity:1;}}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 5%;background:rgba(10,26,46,0.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;transition:all .4s;}
+  [data-theme="light"] nav{background:rgba(240,249,255,0.9);}
+  nav.scrolled{padding:.7rem 5%;}
+  .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.15em;display:flex;align-items:center;gap:.6rem;}
+  .logo-mark{width:32px;height:32px;border-radius:8px;background:var(--gradient);display:flex;align-items:center;justify-content:center;color:var(--navy-dark);font-weight:800;font-size:.85rem;box-shadow:0 4px 20px rgba(0,212,255,0.4);}
+  .logo-text{color:var(--text);}
+  .logo-text span{color:var(--text-muted);font-weight:400;margin-left:.3rem;}
+  .nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center;}
+  .nav-links a{color:var(--text-soft);text-decoration:none;font-weight:500;font-size:.85rem;transition:color .3s;position:relative;cursor:pointer;}
+  .nav-links a:hover{color:var(--cyan);}
+  .nav-links a::after{content:'';position:absolute;bottom:-6px;left:50%;width:0;height:1px;background:var(--gradient);transition:all .3s;transform:translateX(-50%);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-actions{display:flex;gap:.6rem;align-items:center;}
+  .icon-btn{width:38px;height:38px;border-radius:10px;background:var(--surface);border:1px solid var(--border);color:var(--text-soft);cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .3s;}
+  .icon-btn:hover{background:var(--surface-2);color:var(--cyan);border-color:var(--cyan);}
+  .menu-toggle{display:none;}
+  @media (max-width:900px){
+    .nav-links{position:fixed;top:65px;right:-100%;flex-direction:column;background:rgba(10,26,46,0.98);backdrop-filter:blur(20px);width:75%;height:100vh;padding:3rem 2rem;gap:1.5rem;border-left:1px solid var(--border);transition:right .4s ease;overflow-y:auto;}
+    .nav-links.open{right:0;}
+    .menu-toggle{display:flex;}
+  }
+
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 5% 4rem;position:relative;}
+  .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:100px;background:var(--surface);border:1px solid var(--border);font-size:.8rem;color:var(--text-soft);font-weight:500;margin-bottom:2rem;animation:fadeUp 1s .3s both;}
+  .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+  .hero h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.5rem,7vw,5.5rem);line-height:1.05;letter-spacing:-.02em;margin-bottom:1.5rem;animation:fadeUp 1s .5s both;}
+  .hero h1 .gradient-text{background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 200%;animation:gradientShift 8s ease infinite;}
+  @keyframes gradientShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+  .hero-sub{font-size:clamp(1rem,2vw,1.3rem);color:var(--text-soft);max-width:600px;margin:0 auto 2.5rem;font-weight:400;animation:fadeUp 1s .7s both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeUp 1s .9s both;}
+  .btn{padding:.85rem 1.8rem;font-weight:600;font-size:.9rem;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;border-radius:10px;transition:all .3s;}
+  .btn-primary{background:var(--gradient);color:var(--navy-dark);box-shadow:0 4px 20px rgba(0,212,255,0.4);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,215,0,0.5);}
+  .btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--border);}
+  .btn-ghost:hover{background:var(--surface-2);border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px);}
+  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:5rem;max-width:800px;width:100%;animation:fadeUp 1s 1.1s both;}
+  @media (max-width:700px){.hero-stats{grid-template-columns:repeat(2,1fr);}}
+  .stat{text-align:center;padding:1.2rem;border-radius:12px;background:var(--surface);border:1px solid var(--border);}
+  .stat-num{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .stat-label{font-size:.75rem;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;}
+  .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--text-muted);font-size:.75rem;letter-spacing:.2em;display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+  .scroll-hint .line{width:1px;height:30px;background:var(--border);position:relative;overflow:hidden;}
+  .scroll-hint .line::after{content:'';position:absolute;top:-30px;left:0;width:100%;height:30px;background:var(--gradient);animation:scrollLine 2s infinite;}
+  @keyframes scrollLine{to{top:30px;}}
+
+  section{padding:7rem 5%;position:relative;max-width:100%;margin:0 auto;}
+  .section-head{text-align:center;margin-bottom:4rem;max-width:700px;margin-left:auto;margin-right:auto;}
+  .section-tag{display:inline-block;font-size:.8rem;color:var(--cyan);letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:1rem;}
+  .section-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2rem,4vw,3rem);letter-spacing:-.02em;line-height:1.1;margin-bottom:1rem;}
+  .section-desc{color:var(--text-soft);font-size:1.05rem;}
+
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1100px;margin:0 auto;align-items:center;}
+  @media (max-width:900px){.about-grid{grid-template-columns:1fr;}}
+  .about-visual{aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center;}
+  .visual-card{width:100%;height:100%;border-radius:24px;background:var(--surface);border:1px solid var(--border);padding:2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;}
+  .visual-card::before{content:'';position:absolute;top:-50%;right:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(0,212,255,0.2),transparent 50%);animation:drift 20s infinite ease-in-out;}
+  .visual-header{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:start;}
+  .visual-id{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.8rem;color:var(--text-muted);letter-spacing:.2em;}
+  .visual-icon{width:48px;height:48px;border-radius:12px;background:var(--gradient);display:flex;align-items:center;justify-content:center;color:var(--navy-dark);font-size:1.2rem;}
+  .visual-big{position:relative;z-index:1;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(3rem,8vw,5rem);line-height:1;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;margin:2rem 0;}
+  .visual-meta{position:relative;z-index:1;display:flex;gap:2rem;flex-wrap:wrap;}
+  .meta-item{font-size:.85rem;color:var(--text-soft);}
+  .meta-item strong{display:block;color:var(--text);font-weight:600;margin-bottom:.2rem;}
+  .about-text h3{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;margin-bottom:1.5rem;line-height:1.2;}
+  .about-text p{color:var(--text-soft);margin-bottom:1rem;font-size:1rem;}
+  .gender-stats{display:flex;gap:1rem;margin-top:1.5rem;}
+  .gender-card{flex:1;padding:1rem;border-radius:12px;background:var(--surface);border:1px solid var(--border);text-align:center;}
+  .gender-card .num{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .gender-card .label{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;}
+  .about-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;}
+  .feature{padding:1.2rem;border-radius:12px;background:var(--surface);border:1px solid var(--border);transition:all .3s;}
+  .feature:hover{background:var(--surface-2);border-color:var(--cyan);transform:translateY(-3px);}
+  .feature i{font-size:1.2rem;margin-bottom:.7rem;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .feature h4{font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;margin-bottom:.3rem;}
+  .feature p{font-size:.85rem;color:var(--text-muted);margin:0;line-height:1.5;}
+
+  .subjects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;max-width:1100px;margin:0 auto;}
+  .subject-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center;transition:all .4s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden;}
+  .subject-card:hover{transform:translateY(-5px);background:var(--surface-2);border-color:var(--cyan);box-shadow:0 15px 30px rgba(0,212,255,0.2);}
+  .subject-icon{width:50px;height:50px;border-radius:12px;background:var(--surface-2);margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--cyan);transition:all .4s;}
+  .subject-card:hover .subject-icon{background:var(--gradient);color:var(--navy-dark);transform:scale(1.1) rotate(5deg);}
+  .subject-card h4{font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;margin-bottom:.3rem;}
+  .subject-card .type{font-size:.7rem;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;}
+  .subject-card.highlight{border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.05);}
+  .subject-card.highlight .subject-icon{color:var(--gold);}
+
+  .teachers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;max-width:1200px;margin:0 auto;}
+  .teacher-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.3rem;text-align:center;transition:all .4s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden;}
+  .teacher-card:hover{transform:translateY(-5px);background:var(--surface-2);border-color:var(--cyan);box-shadow:0 20px 40px rgba(0,212,255,0.2);}
+  .teacher-card.special{border-color:rgba(255,215,0,0.4);background:rgba(255,215,0,0.05);}
+  .teacher-card.special:hover{border-color:var(--gold);}
+  .teacher-icon{width:60px;height:60px;border-radius:50%;background:var(--surface-2);margin:0 auto .8rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--cyan);transition:all .4s;}
+  .teacher-card:hover .teacher-icon{background:var(--gradient);color:var(--navy-dark);transform:scale(1.1) rotate(5deg);}
+  .teacher-card.special .teacher-icon{color:var(--gold);}
+  .teacher-card h4{font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;margin-bottom:.3rem;line-height:1.3;}
+  .teacher-role{font-size:.7rem;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;}
+  .teacher-card.special .teacher-role{color:var(--gold);font-weight:600;}
+
+  /* Bank Soal & Materi */
+  .materi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1200px;margin:0 auto;}
+  .materi-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:all .4s;position:relative;overflow:hidden;}
+  .materi-card:hover{transform:translateY(-5px);background:var(--surface-2);border-color:var(--cyan);box-shadow:0 15px 35px rgba(0,212,255,0.2);}
+  .materi-icon{width:50px;height:50px;border-radius:12px;background:var(--gradient);display:flex;align-items:center;justify-content:center;color:var(--navy-dark);font-size:1.5rem;margin-bottom:1rem;}
+  .materi-card h4{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;margin-bottom:.5rem;}
+  .materi-card p{font-size:.85rem;color:var(--text-soft);margin-bottom:1rem;line-height:1.5;}
+  .materi-link{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;color:var(--cyan);text-decoration:none;font-size:.85rem;font-weight:600;transition:all .3s;}
+  .materi-link:hover{background:var(--gradient);color:var(--navy-dark);border-color:transparent;}
+  .badge-new{position:absolute;top:10px;right:10px;background:var(--gold);color:var(--navy-dark);padding:.2rem .6rem;border-radius:6px;font-size:.7rem;font-weight:700;text-transform:uppercase;}
+  .badge-urgent{position:absolute;top:10px;right:10px;background:#ef4444;color:#fff;padding:.2rem .6rem;border-radius:6px;font-size:.7rem;font-weight:700;text-transform:uppercase;animation:pulse 2s infinite;}
+
+  /* Pengumuman */
+  .pengumuman-list{max-width:900px;margin:0 auto;}
+  .pengumuman-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1rem;transition:all .3s;position:relative;}
+  .pengumuman-item:hover{background:var(--surface-2);border-color:var(--cyan);transform:translateX(5px);}
+  .pengumuman-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;flex-wrap:wrap;gap:.5rem;}
+  .pengumuman-title{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--text);}
+  .pengumuman-date{font-size:.8rem;color:var(--text-muted);display:flex;align-items:center;gap:.3rem;}
+  .pengumuman-content{color:var(--text-soft);font-size:.95rem;line-height:1.7;}
+  .pengumuman-tag{display:inline-block;padding:.2rem .6rem;border-radius:6px;font-size:.7rem;font-weight:600;text-transform:uppercase;margin-top:.8rem;}
+  .tag-info{background:rgba(0,212,255,0.15);color:var(--cyan);}
+  .tag-penting{background:rgba(255,215,0,0.15);color:var(--gold);}
+
+  /* Info Akademik */
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;max-width:1200px;margin:0 auto;}
+  .info-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .4s;}
+  .info-card:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow:0 15px 35px rgba(0,212,255,0.2);}
+  .info-header{background:var(--gradient);padding:1.5rem;color:var(--navy-dark);}
+  .info-header h4{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;margin-bottom:.5rem;}
+  .info-header p{font-size:.85rem;opacity:.9;}
+  .info-body{padding:1.5rem;}
+  .info-body p{color:var(--text-soft);font-size:.9rem;line-height:1.7;margin-bottom:1rem;}
+  .info-actions{display:flex;gap:.8rem;flex-wrap:wrap;}
+  .info-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--cyan);text-decoration:none;font-weight:600;font-size:.9rem;transition:gap .3s;cursor:pointer;background:none;border:none;font-family:inherit;}
+  .info-link:hover{gap:10px;}
+  .info-link-download{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none;font-weight:600;font-size:.85rem;transition:all .3s;}
+  .info-link-download:hover{background:var(--gradient);color:var(--navy-dark);border-color:transparent;}
+
+  /* === PDF MODAL VIEWER === */
+  .pdf-modal{
+    position:fixed;inset:0;z-index:9998;
+    background:rgba(10,26,46,0.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    display:none;align-items:center;justify-content:center;
+    padding:1rem;opacity:0;transition:opacity .3s;
+  }
+  .pdf-modal.active{display:flex;opacity:1;}
+  .pdf-modal-container{
+    width:100%;max-width:1000px;height:90vh;
+    background:var(--bg-2);border:1px solid var(--border-strong);
+    border-radius:16px;overflow:hidden;
+    display:flex;flex-direction:column;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    transform:scale(0.9);transition:transform .3s;
+  }
+  .pdf-modal.active .pdf-modal-container{transform:scale(1);}
+  .pdf-modal-header{
+    padding:1rem 1.5rem;
+    background:var(--gradient);
+    display:flex;justify-content:space-between;align-items:center;
+    gap:1rem;flex-wrap:wrap;
+  }
+  .pdf-modal-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;font-size:1.1rem;
+    color:var(--navy-dark);
+    display:flex;align-items:center;gap:.6rem;
+    flex:1;min-width:0;
+  }
+  .pdf-modal-title i{font-size:1.3rem;}
+  .pdf-modal-title-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .pdf-modal-actions{display:flex;gap:.5rem;}
+  .pdf-modal-btn{
+    width:38px;height:38px;border-radius:8px;
+    background:rgba(10,26,46,0.2);border:1px solid rgba(10,26,46,0.3);
+    color:var(--navy-dark);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .3s;font-size:.9rem;text-decoration:none;
+  }
+  .pdf-modal-btn:hover{background:rgba(10,26,46,0.4);transform:scale(1.05);}
+  .pdf-modal-body{
+    flex:1;position:relative;background:#525659;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .pdf-modal-body iframe{
+    width:100%;height:100%;border:none;background:#525659;
+  }
+  .pdf-loading{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:#525659;color:#fff;gap:1rem;
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .pdf-loading-spinner{
+    width:50px;height:50px;border-radius:50%;
+    border:3px solid rgba(255,255,255,0.2);
+    border-top-color:var(--cyan);
+    animation:spin 1s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @media (max-width:768px){
+    .pdf-modal-container{height:95vh;border-radius:12px;}
+    .pdf-modal-header{padding:.8rem 1rem;}
+    .pdf-modal-title{font-size:.95rem;}
+    .pdf-modal-btn{width:34px;height:34px;font-size:.8rem;}
+  }
+
+  .members-toolbar{max-width:1200px;margin:0 auto 2rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:space-between;align-items:center;}
+  .search-box{flex:1;min-width:250px;max-width:400px;position:relative;}
+  .search-box input{width:100%;padding:.8rem 1rem .8rem 2.8rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'Inter',sans-serif;font-size:.9rem;transition:all .3s;}
+  .search-box input:focus{outline:none;border-color:var(--cyan);background:var(--surface-2);}
+  .search-box i{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);}
+  .member-count{font-family:'Space Grotesk',sans-serif;font-size:.9rem;color:var(--text-soft);}
+  .member-count strong{color:var(--cyan);}
+
+  .members-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;max-width:1200px;margin:0 auto;}
+  .member-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.3rem;text-align:center;transition:all .4s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden;}
+  .member-card:hover{transform:translateY(-5px);background:var(--surface-2);border-color:var(--cyan);box-shadow:0 20px 40px rgba(0,212,255,0.2);}
+  .member-card.leader{border-color:rgba(255,215,0,0.4);background:rgba(255,215,0,0.05);}
+  .member-card.leader:hover{border-color:var(--gold);}
+  .avatar{width:65px;height:65px;border-radius:50%;background:var(--gradient);margin:0 auto .8rem;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;color:var(--navy-dark);transition:transform .4s;}
+  .member-card:hover .avatar{transform:scale(1.08) rotate(5deg);}
+  .member-card h4{font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;margin-bottom:.4rem;line-height:1.3;}
+  .role-badge{display:inline-block;font-size:.65rem;padding:.25rem .7rem;border-radius:100px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;}
+  .role-ketua{background:rgba(255,215,0,0.15);color:var(--gold);border:1px solid rgba(255,215,0,0.3);}
+  .role-wakil{background:rgba(0,212,255,0.15);color:var(--cyan);border:1px solid rgba(0,212,255,0.3);}
+  .role-sekben{background:rgba(96,165,250,0.15);color:#60a5fa;border:1px solid rgba(96,165,250,0.3);}
+  .role-anggota{background:var(--surface-2);color:var(--role-anggota);border:1px solid var(--border);}
+  .member-num{position:absolute;top:10px;left:10px;font-family:'Space Grotesk',sans-serif;font-size:.7rem;color:var(--text-muted);opacity:.6;}
+  .crown{position:absolute;top:10px;right:10px;color:var(--gold);font-size:.9rem;}
+  .no-result{text-align:center;padding:3rem;color:var(--text-muted);grid-column:1/-1;font-family:'Space Grotesk',sans-serif;}
+
+  .contact-container{max-width:600px;margin:0 auto;text-align:center;}
+
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;max-width:1200px;margin:0 auto;}
+  .gallery-item{aspect-ratio:4/3;border-radius:16px;overflow:hidden;position:relative;cursor:pointer;background:var(--surface);border:1px solid var(--border);transition:all .4s;}
+  .gallery-item:hover{transform:translateY(-5px);border-color:var(--cyan);}
+  .gallery-item .bg-grad{position:absolute;inset:0;opacity:.4;transition:opacity .4s;}
+  .gallery-item:nth-child(1) .bg-grad{background:linear-gradient(135deg,var(--navy-light),var(--cyan));}
+  .gallery-item:nth-child(2) .bg-grad{background:linear-gradient(135deg,var(--gold),var(--cyan));}
+  .gallery-item:nth-child(3) .bg-grad{background:linear-gradient(135deg,var(--cyan),#60a5fa);}
+  .gallery-item:nth-child(4) .bg-grad{background:linear-gradient(135deg,var(--gold),var(--navy-light));}
+  .gallery-item:nth-child(5) .bg-grad{background:linear-gradient(135deg,var(--navy),var(--gold));}
+  .gallery-item:nth-child(6) .bg-grad{background:linear-gradient(135deg,var(--cyan),var(--gold));}
+  .gallery-item:hover .bg-grad{opacity:.6;}
+  .gallery-item .overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,26,46,0.8);backdrop-filter:blur(8px);opacity:0;transition:opacity .4s;padding:1rem;text-align:center;}
+  .gallery-item:hover .overlay{opacity:1;}
+  .gallery-item i{font-size:2.5rem;color:var(--cyan);margin-bottom:1rem;}
+  .gallery-item h4{font-family:'Space Grotesk',sans-serif;margin-bottom:.3rem;color:var(--text);}
+  .gallery-item p{color:var(--text-soft);font-size:.85rem;}
+
+  footer{padding:3rem 5% 2rem;text-align:center;border-top:1px solid var(--border);background:var(--surface);}
+  .socials{display:flex;gap:.8rem;justify-content:center;margin-bottom:2rem;}
+  .socials a{width:42px;height:42px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-soft);display:flex;align-items:center;justify-content:center;transition:all .3s;text-decoration:none;}
+  .socials a:hover{color:var(--navy-dark);border-color:var(--cyan);transform:translateY(-3px);background:var(--gradient);}
+  .copyright{color:var(--text-muted);font-size:.85rem;line-height:1.8;}
+  .copyright strong{background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600;}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.2,.8,.2,1);}
+  .reveal.show{opacity:1;transform:translateY(0);}
+
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:var(--gradient);border-radius:4px;}
+  ::-webkit-scrollbar-thumb:hover{background:var(--gold);}
+
+  @media (max-width: 768px) {
+    body { overflow-x: hidden; }
+    section { padding: 4rem 5%; max-width: 100%; margin: 0 auto; }
+    .hero { padding: 7rem 5% 3rem; text-align: center; }
+    .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); text-align: center; }
+    .hero-sub { text-align: center; }
+    .hero-btns { justify-content: center; }
+    .section-head { padding: 0 5%; }
+    .section-title { font-size: clamp(1.75rem, 5vw, 2.5rem); text-align: center; }
+    .about-grid { gap: 2rem; }
+    .about-visual { aspect-ratio: 4/3; max-width: 100%; margin: 0 auto; }
+    .visual-card { max-width: 90%; margin: 0 auto; }
+    .visual-big { font-size: clamp(2.5rem, 8vw, 4rem); text-align: center; margin: 1rem auto; }
+    .visual-meta { justify-content: center; }
+    .members-grid, .subjects-grid, .teachers-grid, .materi-grid, .info-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 0 2%; max-width: 100%; margin: 0 auto; }
+    .member-card, .subject-card, .teacher-card, .materi-card { padding: 1rem; margin: 0 auto; width: 100%; }
+    .avatar, .teacher-icon { width: 60px; height: 60px; font-size: 1.1rem; margin: 0 auto 0.8rem; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; padding: 0 2%; max-width: 100%; margin: 0 auto; }
+    .members-toolbar { flex-direction: column; align-items: center; gap: 1rem; padding: 0 5%; max-width: 100%; margin: 0 auto; }
+    .search-box { max-width: 100%; min-width: 100%; width: 100%; }
+    .member-count { text-align: center; width: 100%; }
+    .hero-stats { gap: 1rem; padding: 0 5%; }
+    .stat { padding: 1rem 0.5rem; }
+    .gender-stats { max-width: 100%; margin: 1.5rem auto; }
+    .about-features { max-width: 100%; }
+    .contact-container { max-width: 100%; padding: 0 5%; }
+    footer { padding: 2rem 5%; text-align: center; }
+    .socials { justify-content: center; }
+    .pengumuman-header { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 375px) {
+    .members-grid, .subjects-grid, .teachers-grid, .gallery-grid, .materi-grid, .info-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="noise"></div>
+<div class="stars"></div>
+
+<div id="loader"><div class="loader-mark">CYBERTRON</div></div>
+
+<nav id="navbar">
+  <div class="logo">
+    <div class="logo-mark">CT</div>
+    <div class="logo-text">XII F2A<span>CYBERTRON</span></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" class="nav-link">Home</a></li>
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#mapel" class="nav-link">Mapel</a></li>
+    <li><a href="#materi" class="nav-link">Materi</a></li>
+    <li><a href="#pengumuman" class="nav-link">Pengumuman</a></li>
+    <li><a href="#info" class="nav-link">Info</a></li>
+    <li><a href="#teachers" class="nav-link">Guru</a></li>
+    <li><a href="#members" class="nav-link">Members</a></li>
+    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+    <li><a href="#contact" class="nav-link">Feedback</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="icon-btn" id="themeToggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+    <button class="icon-btn menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-badge"><span class="dot"></span><span>Class XII F2A • Teknik Track • 2026/2027</span></div>
+  <h1>Welcome to<br><span class="gradient-text">CYBERTRON</span></h1>
+  <p class="hero-sub">Kelas peminatan Teknik yang menyatukan logika, kreativitas, dan semangat kebersamaan. Kami siap merakit masa depan, satu persamaan pada satu waktu.</p>
+  <div class="hero-btns">
+    <a href="#about" class="btn btn-primary nav-link">Jelajahi <i class="fas fa-arrow-right"></i></a>
+    <a href="#members" class="btn btn-ghost nav-link">Kenali Kami</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num" data-count="36">0</div><div class="stat-label">Siswa</div></div>
+    <div class="stat"><div class="stat-num" data-count="23">0</div><div class="stat-label">Perempuan</div></div>
+    <div class="stat"><div class="stat-num" data-count="13">0</div><div class="stat-label">Laki-laki</div></div>
+    <div class="stat"><div class="stat-num" data-count="13">0</div><div class="stat-label">Mapel</div></div>
+  </div>
+  <div class="scroll-hint"><span>SCROLL</span><div class="line"></div></div>
+</section>
+
+<section id="about">
+  <div class="section-head reveal">
+    <span class="section-tag">About Us</span>
+    <h2 class="section-title">Lebih dari sekadar kelas</h2>
+    <p class="section-desc">Kami adalah keluarga kedua yang saling mendukung, belajar, dan bertumbuh bersama setiap harinya.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="visual-card">
+        <div class="visual-header">
+          <div class="visual-id">// XII F2A • TEKNIK</div>
+          <div class="visual-icon"><i class="fas fa-gears"></i></div>
+        </div>
+        <div class="visual-big">CT</div>
+        <div class="visual-meta">
+          <div class="meta-item"><strong>Founded</strong>2026</div>
+          <div class="meta-item"><strong>Members</strong>36 Students</div>
+          <div class="meta-item"><strong>Track</strong>Engineering</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <h3>Bersama kita lebih kuat, bersama kita lebih hebat.</h3>
+      <p>XII F2A CYBERTRON bukan hanya tentang nilai akademis, tapi tentang membentuk karakter, persahabatan, dan kenangan indah yang akan kita bawa selamanya.</p>
+      <p>Sebagai kelas Teknik, kami diajarkan untuk berpikir logis, menyelesaikan masalah, dan bekerja sama dalam tim. Setiap anggota punya peran penting dalam mesin besar ini.</p>
+      <div class="gender-stats">
+        <div class="gender-card"><div class="num">23</div><div class="label">Perempuan</div></div>
+        <div class="gender-card"><div class="num">13</div><div class="label">Laki-laki</div></div>
+      </div>
+      <div class="about-features">
+        <div class="feature"><i class="fas fa-rocket"></i><h4>Ambisius</h4><p>Selalu mengejar yang terbaik</p></div>
+        <div class="feature"><i class="fas fa-users"></i><h4>Solid</h4><p>Kompak dalam setiap kegiatan</p></div>
+        <div class="feature"><i class="fas fa-medal"></i><h4>Berprestasi</h4><p>Rajin di berbagai bidang</p></div>
+        <div class="feature"><i class="fas fa-heart"></i><h4>Keluarga</h4><p>Saling support sepenuh hati</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mapel">
+  <div class="section-head reveal">
+    <span class="section-tag">Curriculum</span>
+    <h2 class="section-title">Mata Pelajaran F2 (Teknik)</h2>
+    <p class="section-desc">13 mata pelajaran yang kami pelajari untuk membentuk fondasi teknik dan pengetahuan umum yang kuat.</p>
+  </div>
+  <div class="subjects-grid">
+    <div class="subject-card highlight reveal"><div class="subject-icon"><i class="fas fa-square-root-variable"></i></div><h4>MTK Lanjut</h4><div class="type">Peminatan</div></div>
+    <div class="subject-card highlight reveal"><div class="subject-icon"><i class="fas fa-atom"></i></div><h4>Fisika</h4><div class="type">Peminatan</div></div>
+    <div class="subject-card highlight reveal"><div class="subject-icon"><i class="fas fa-laptop-code"></i></div><h4>Informatika</h4><div class="type">Peminatan</div></div>
+    <div class="subject-card reveal"><div class="subject-icon"><i class="fas fa-calculator"></i></div><h4>Matematika Wajib</h4><div class="type">Umum</div></div>
+    <div class="subject-card reveal"><div class="subject-icon"><i class="fas fa-language"></i></div><h4>Bahasa Inggris</h4><div class="type">Umum</div></div>
+    <div class="subject-card reveal"><div class="subject-icon"><i class="fas fa-book-open"></i></div><h4>Bahasa Indonesia</h4><div class="type">Umum</div></div>
+    <div class="subject-card reveal"><div class="subject-icon"><i class="fas fa-landmark"></i></div><h4>Sejarah</h4><div class="type">Umum</div></div>
+    <div class="subject-card reveal"><div class="subject-icon"><i class="fas fa-earth-asia"></i></div><h4>Geografi</h4><div class="type">Umum</div></div>
+    <div class="subject-card reveal"><div class="subject-icon"><i class="fas fa-scale-balanced"></i></div><h4>PKN</h4><div class="type">Umum</div></div>
+    <div class="subject-card reveal"><div class="subject-icon"><i class="fas fa-mosque"></i></div><h4>PAI</h4><div class="type">Umum</div></div>
+    <div class="subject-card reveal"><div class="subject-icon"><i class="fas fa-person-running"></i></div><h4>PJOK</h4><div class="type">Umum</div></div>
+    <div class="subject-card reveal"><div class="subject-icon"><i class="fas fa-palette"></i></div><h4>Seni Budaya</h4><div class="type">Umum</div></div>
+    <div class="subject-card reveal"><div class="subject-icon"><i class="fas fa-lightbulb"></i></div><h4>Prakarya & KWU</h4><div class="type">Umum</div></div>
+  </div>
+</section>
+
+<section id="materi">
+  <div class="section-head reveal">
+    <span class="section-tag">Learning Resources</span>
+    <h2 class="section-title">Bank Soal & Materi Belajar</h2>
+    <p class="section-desc">Kumpulan link Google Drive berisi materi pembelajaran, latihan soal TKA, SNBT, dan sumber belajar lainnya.</p>
+  </div>
+  <div class="materi-grid" id="materiGrid"></div>
+</section>
+
+<section id="pengumuman">
+  <div class="section-head reveal">
+    <span class="section-tag">Announcements</span>
+    <h2 class="section-title">Pengumuman Penting</h2>
+    <p class="section-desc">Informasi terkini dan pengumuman penting untuk seluruh anggota kelas XII F2A CYBERTRON.</p>
+  </div>
+  <div class="pengumuman-list" id="pengumumanList"></div>
+</section>
+
+<section id="info">
+  <div class="section-head reveal">
+    <span class="section-tag">Academic Info</span>
+    <h2 class="section-title">Info Akademik & Surat Edaran</h2>
+    <p class="section-desc">Informasi resmi dari pemerintah dan institusi pendidikan mengenai TKA, SNBT, dan kebijakan akademik lainnya. Klik "Baca Surat" untuk membaca langsung di sini.</p>
+  </div>
+  <div class="info-grid" id="infoGrid"></div>
+</section>
+
+<section id="teachers">
+  <div class="section-head reveal">
+    <span class="section-tag">Our Mentors</span>
+    <h2 class="section-title">Data Guru Pengajar</h2>
+    <p class="section-desc">Para pendidik hebat yang membimbing kami menuju masa depan. Terima kasih atas dedikasi Bapak/Ibu Guru.</p>
+  </div>
+  <div class="teachers-grid" id="teachersGrid"></div>
+</section>
+
+<section id="members">
+  <div class="section-head reveal">
+    <span class="section-tag">Our Team</span>
+    <h2 class="section-title">36 Anggota CYBERTRON</h2>
+    <p class="section-desc">Setiap orang punya cerita dan keunikan tersendiri yang membuat kelas ini istimewa. Diurutkan dari A sampai Z.</p>
+  </div>
+  <div class="members-toolbar reveal">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Cari nama anggota...">
+    </div>
+    <div class="member-count">Menampilkan <strong id="memberCount">36</strong> dari 36 anggota</div>
+  </div>
+  <div class="members-grid" id="membersGrid"></div>
+</section>
+
+<section id="gallery">
+  <div class="section-head reveal">
+    <span class="section-tag">Memories</span>
+    <h2 class="section-title">Momen berharga kami</h2>
+    <p class="section-desc">Kenangan-kenangan indah yang terukir dalam perjalanan kelas XII F2A CYBERTRON.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal"><div class="bg-grad"></div><i class="fas fa-graduation-cap"></i><div class="overlay"><h4>Study Tour</h4><p>Petualangan bersama</p></div></div>
+    <div class="gallery-item reveal"><div class="bg-grad"></div><i class="fas fa-trophy"></i><div class="overlay"><h4>Juara Kelas</h4><p>Prestasi membanggakan</p></div></div>
+    <div class="gallery-item reveal"><div class="bg-grad"></div><i class="fas fa-music"></i><div class="overlay"><h4>Pentas Seni</h4><p>Kreativitas tanpa batas</p></div></div>
+    <div class="gallery-item reveal"><div class="bg-grad"></div><i class="fas fa-futbol"></i><div class="overlay"><h4>Class Meeting</h4><p>Sportivitas tinggi</p></div></div>
+    <div class="gallery-item reveal"><div class="bg-grad"></div><i class="fas fa-camera"></i><div class="overlay"><h4>Photo Session</h4><p>Kenangan abadi</p></div></div>
+    <div class="gallery-item reveal"><div class="bg-grad"></div><i class="fas fa-heart"></i><div class="overlay"><h4>Gathering</h4><p>Kebersamaan hangat</p></div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-head reveal">
+    <span class="section-tag">Feedback</span>
+    <h2 class="section-title">Lapor Bug & Saran</h2>
+    <p class="section-desc">Menemukan data salah, foto tertukar, atau punya ide fitur baru? Bantu kami memperbaiki website ini melalui form di bawah.</p>
+  </div>
+  <div class="contact-container reveal">
+    <a href="https://forms.gle/rQkndKNQkB4LQ4DW7" target="_blank" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;">
+      <i class="fas fa-paper-plane"></i> Kirim Laporan / Saran
+    </a>
+    <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+      <i class="fas fa-shield-alt" style="color: var(--cyan);"></i> 
+      Identitas aman. Khusus untuk laporan & saran website.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="socials">
+    <a href="https://instagram.com/f2a.cybertron" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-tiktok"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
+    <a href="#"><i class="fab fa-whatsapp"></i></a>
+    <a href="#"><i class="fas fa-envelope"></i></a>
+  </div>
+  <div class="copyright">
+    © 2026 <strong>XII F2A CYBERTRON</strong> • All Rights Reserved<br>
+    <span style="font-size:.8rem;">Website developed <span style="color:var(--cyan);">by Fatir Thoriqul Karim</span></span>
+  </div>
+</footer>
+
+<!-- === PDF MODAL VIEWER === -->
+<div class="pdf-modal" id="pdfModal">
+  <div class="pdf-modal-container">
+    <div class="pdf-modal-header">
+      <div class="pdf-modal-title">
+        <i class="fas fa-file-pdf"></i>
+        <span class="pdf-modal-title-text" id="pdfModalTitle">Dokumen PDF</span>
+      </div>
+      <div class="pdf-modal-actions">
+        <a href="#" id="pdfDownloadBtn" class="pdf-modal-btn" title="Download" target="_blank">
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" id="pdfOpenBtn" class="pdf-modal-btn" title="Buka di Tab Baru" target="_blank">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <button class="pdf-modal-btn" id="pdfCloseBtn" title="Tutup">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <div class="pdf-modal-body">
+      <div class="pdf-loading" id="pdfLoading">
+        <div class="pdf-loading-spinner"></div>
+        <div>Memuat dokumen...</div>
+      </div>
+      <iframe id="pdfFrame" src="" allow="autoplay" style="display:none;"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  // === HANDLE NAVIGASI ===
+  document.querySelectorAll('.nav-link').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetId = this.getAttribute('href').substring(1);
+      var target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Loader
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.getElementById('loader').classList.add('hide');
+    }, 800);
+  });
+
+  // Navbar scroll effect
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Theme Toggle
+  var themeBtn = document.getElementById('themeToggle');
+  themeBtn.addEventListener('click', function() {
+    var cur = document.documentElement.getAttribute('data-theme');
+    var next = cur === 'light' ? '' : 'light';
+    if (next) {
+      document.documentElement.setAttribute('data-theme', next);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    themeBtn.innerHTML = next === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  });
+
+  // Mobile Menu
+  document.getElementById('menuToggle').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // Generate Initials for Members
+  function getInitials(name) {
+    var cleanName = name.trim();
+    var parts = cleanName.split(' ').filter(function(p) { return p.length > 0; });
+    if (parts.length === 1) return parts[0][0].toUpperCase();
+    return (parts[0][0] + parts[1][0]).toUpperCase();
+  }
+
+  // === DATA ANGGOTA KELAS ===
+  var members = [
+    {name:'Adelia Miranda Putri',role:'Anggota'},{name:'Aini Balqis',role:'Anggota'},{name:'Ainun Agustina',role:'Anggota'},{name:'Ainun Sakinah',role:'Anggota'},{name:'Airin Fitriani',role:'Anggota'},{name:'Almira Ambarwati',role:'Anggota'},{name:'Anna Altofunnisa',role:'Anggota'},{name:'Anne Marie Aisyah',role:'Anggota'},{name:'Astria Putri Tuljanah',role:'Anggota'},{name:'Dzakiyah Huwaidah',role:'Anggota'},{name:'Fatir Thoriqul Karim',role:'Anggota'},{name:'Helena Aprillia',role:'Sekretaris'},{name:'Hesti Puspitasari',role:'Anggota'},{name:'Inayah',role:'Anggota'},{name:'Intan Berlian',role:'Anggota'},{name:'Ivan Algifari',role:'Keamanan'},{name:'Lala Arjuniasty',role:'Anggota'},{name:'M. Adhar',role:'Wakil Ketua'},{name:'M. Kasmin',role:'Anggota'},{name:'M. Yusuf',role:'Anggota'},{name:'Maesun Jahra',role:'Anggota'},{name:'Muhammad Adwin',role:'Anggota'},{name:'Muhammad Rehan',role:'Ketua Kelas'},{name:'Muhammad Rohim',role:'Anggota'},{name:'Muhammad Salahuddin',role:'Anggota'},{name:'Nada Fatul Sholiha',role:'Anggota'},{name:'Nada Soraya',role:'Anggota'},{name:'Noval Kurniawan',role:'Anggota'},{name:'Nurna Ningsih',role:'Anggota'},{name:'Putri Nan Ayu',role:'Anggota'},{name:'Rasyidin Alfarizi',role:'Anggota'},{name:'Sahrul Akbar',role:'Anggota'},{name:'Sauzan Dinayah',role:'Bendahara'},{name:'Shadira',role:'Anggota'},{name:'Wahyu Akbar',role:'Anggota'},{name:'Windy Haerani',role:'Anggota'}
+  ];
+
+  // Render Members
+  var grid = document.getElementById('membersGrid');
+  var searchInput = document.getElementById('searchInput');
+  var memberCountEl = document.getElementById('memberCount');
+
+  function getRoleClass(role) {
+    if (role === 'Ketua Kelas') return 'role-ketua';
+    if (role === 'Wakil Ketua') return 'role-wakil';
+    if (['Sekretaris','Bendahara','Keamanan'].indexOf(role) !== -1) return 'role-sekben';
+    return 'role-anggota';
+  }
+
+  function renderMembers(filter) {
+    filter = filter || '';
+    grid.innerHTML = '';
+    var filtered = members.filter(function(m) {
+      return m.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+    });
+    memberCountEl.textContent = filtered.length;
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '<div class="no-result"><i class="fas fa-search" style="font-size:2rem;margin-bottom:1rem;display:block;opacity:.4;"></i>Tidak ada anggota dengan nama tersebut</div>';
+      return;
+    }
+
+    filtered.forEach(function(m) {
+      var isLeader = m.role === 'Ketua Kelas';
+      var card = document.createElement('div');
+      card.className = 'member-card reveal show' + (isLeader ? ' leader' : '');
+      card.innerHTML = 
+        '<div class="member-num">#' + String(members.indexOf(m) + 1).padStart(2, '0') + '</div>' +
+        (isLeader ? '<i class="fas fa-crown crown"></i>' : '') +
+        '<div class="avatar">' + getInitials(m.name) + '</div>' +
+        '<h4>' + m.name + '</h4>' +
+        '<span class="role-badge ' + getRoleClass(m.role) + '">' + m.role + '</span>';
+      grid.appendChild(card);
+    });
+  }
+
+  renderMembers('');
+
+  searchInput.addEventListener('input', function(e) {
+    renderMembers(e.target.value);
+  });
+
+  // === DATA GURU ===
+  var teachers = [
+    { name: 'Ibu Sumandari', role: 'Wali Kelas', subject: 'Wali Kelas & Fisika', icon: 'fa-user-tie', special: true },
+    { name: '[Nama Guru]', role: 'Guru', subject: 'MTK Lanjut', icon: 'fa-square-root-variable', special: false },
+    { name: '[Nama Guru]', role: 'Guru', subject: 'Informatika', icon: 'fa-laptop-code', special: false },
+    { name: '[Nama Guru]', role: 'Guru', subject: 'Matematika Wajib', icon: 'fa-calculator', special: false },
+    { name: '[Nama Guru]', role: 'Guru', subject: 'Bahasa Inggris', icon: 'fa-language', special: false },
+    { name: '[Nama Guru]', role: 'Guru', subject: 'Bahasa Indonesia', icon: 'fa-book-open', special: false },
+    { name: '[Nama Guru]', role: 'Guru', subject: 'Sejarah', icon: 'fa-landmark', special: false },
+    { name: '[Nama Guru]', role: 'Guru', subject: 'Geografi', icon: 'fa-earth-asia', special: false },
+    { name: '[Nama Guru]', role: 'Guru', subject: 'PKN', icon: 'fa-scale-balanced', special: false },
+    { name: '[Nama Guru]', role: 'Guru', subject: 'PAI', icon: 'fa-mosque', special: false },
+    { name: '[Nama Guru]', role: 'Guru', subject: 'PJOK', icon: 'fa-person-running', special: false },
+    { name: '[Nama Guru]', role: 'Guru', subject: 'Seni Budaya', icon: 'fa-palette', special: false },
+    { name: '[Nama Guru]', role: 'Guru', subject: 'Prakarya & KWU', icon: 'fa-lightbulb', special: false }
+  ];
+
+  var tGrid = document.getElementById('teachersGrid');
+  teachers.forEach(function(t) {
+    var card = document.createElement('div');
+    card.className = 'teacher-card reveal show' + (t.special ? ' special' : '');
+    card.innerHTML = 
+      '<div class="teacher-icon"><i class="fas ' + t.icon + '"></i></div>' +
+      '<h4>' + t.name + '</h4>' +
+      '<div class="teacher-role">' + t.subject + '</div>';
+    tGrid.appendChild(card);
+  });
+
+  // === BANK SOAL & MATERI ===
+  var materiList = [
+    { title: 'Latihan Soal TKA', desc: 'Kumpulan soal TKA (Tes Kompetensi Akademik) untuk persiapan ujian.', icon: 'fa-book', link: '#', badge: 'new' },
+    { title: 'Soal SNBT 2024', desc: 'Bank soal SNBT tahun 2024 lengkap dengan pembahasan.', icon: 'fa-file-alt', link: '#', badge: 'urgent' },
+    { title: 'Materi Fisika', desc: 'Rangkuman materi Fisika kelas XII lengkap dengan rumus.', icon: 'fa-atom', link: '#' },
+    { title: 'Latihan MTK Lanjut', desc: 'Soal latihan Matematika Lanjut untuk pendalaman materi.', icon: 'fa-calculator', link: '#' },
+    { title: 'Materi Informatika', desc: 'Modul dan materi pembelajaran Informatika.', icon: 'fa-laptop-code', link: '#' },
+    { title: 'Try Out Online', desc: 'Link try out online untuk latihan mandiri.', icon: 'fa-laptop', link: '#', badge: 'new' }
+  ];
+
+  var mGrid = document.getElementById('materiGrid');
+  materiList.forEach(function(m) {
+    var card = document.createElement('div');
+    card.className = 'materi-card reveal show';
+    var badgeHtml = m.badge ? '<span class="badge-' + m.badge + '">' + (m.badge === 'new' ? 'NEW' : 'URGENT') + '</span>' : '';
+    card.innerHTML = 
+      badgeHtml +
+      '<div class="materi-icon"><i class="fas ' + m.icon + '"></i></div>' +
+      '<h4>' + m.title + '</h4>' +
+      '<p>' + m.desc + '</p>' +
+      '<a href="' + m.link + '" class="materi-link" target="_blank"><i class="fas fa-external-link-alt"></i> Akses Drive</a>';
+    mGrid.appendChild(card);
+  });
+
+  // === PENGUMUMAN ===
+  var pengumumanList = [
+    { title: 'Ujian Tengah Semester', date: '15 Juli 2026', content: 'Ujian Tengah Semester akan dilaksanakan pada tanggal 20-25 Juli 2026. Harap mempersiapkan diri dengan baik.', tag: 'penting' },
+    { title: 'Pengumpulan Tugas Akhir', date: '10 Juli 2026', content: 'Batas pengumpulan tugas akhir mata pelajaran Prakarya & KWU adalah tanggal 15 Juli 2026.', tag: 'info' },
+    { title: 'Jadwal Les Tambahan', date: '5 Juli 2026', content: 'Les tambahan untuk persiapan TKA akan diadakan setiap hari Sabtu pukul 08.00-12.00 WIB.', tag: 'info' }
+  ];
+
+  var pList = document.getElementById('pengumumanList');
+  pengumumanList.forEach(function(p) {
+    var item = document.createElement('div');
+    item.className = 'pengumuman-item reveal show';
+    item.innerHTML = 
+      '<div class="pengumuman-header">' +
+        '<h4 class="pengumuman-title">' + p.title + '</h4>' +
+        '<div class="pengumuman-date"><i class="far fa-calendar-alt"></i> ' + p.date + '</div>' +
+      '</div>' +
+      '<div class="pengumuman-content">' + p.content + '</div>' +
+      '<span class="pengumuman-tag tag-' + p.tag + '">' + (p.tag === 'penting' ? 'PENTING' : 'INFO') + '</span>';
+    pList.appendChild(item);
+  });
+
+  // === INFO AKADEMIK (DENGAN EMBED PDF) ===
+  // FORMAT LINK DRIVE: https://drive.google.com/file/d/FILE_ID/view
+  // Akan otomatis diconvert ke format embed: https://drive.google.com/file/d/FILE_ID/preview
+  var infoList = [
+    { 
+      title: 'Surat Edaran Resmi TKA', 
+      subtitle: 'Dokumen Resmi 2026', 
+      desc: 'Surat edaran resmi mengenai pelaksanaan Tes Kompetensi Akademik tahun 2026.', 
+      link: 'https://drive.google.com/file/d/1JhEv3gADnY_kJs6kJuJeqKxzep21IEY3/view?usp=drivesdk',
+      embeddable: true
+    },
+    { 
+      title: 'Panduan SNBT', 
+      subtitle: 'Dari LTMPT', 
+      desc: 'Panduan lengkap pendaftaran SNBT dari LTMPT.', 
+      link: '#',
+      embeddable: false
+    },
+    { 
+      title: 'Kalender Akademik', 
+      subtitle: 'Tahun Ajaran 2026/2027', 
+      desc: 'Kalender akademik lengkap dengan jadwal ujian, libur, dan kegiatan penting lainnya.', 
+      link: '#',
+      embeddable: false
+    }
+  ];
+
+  // Fungsi untuk convert link Drive ke format embed
+  function getEmbedUrl(link) {
+    // Format: https://drive.google.com/file/d/FILE_ID/...
+    var match = link.match(/\/file\/d\/([^\/]+)/);
+    if (match) {
+      return 'https://drive.google.com/file/d/' + match[1] + '/preview';
+    }
+    return link;
+  }
+
+  // === PDF MODAL LOGIC ===
+  var pdfModal = document.getElementById('pdfModal');
+  var pdfFrame = document.getElementById('pdfFrame');
+  var pdfLoading = document.getElementById('pdfLoading');
+  var pdfModalTitle = document.getElementById('pdfModalTitle');
+  var pdfDownloadBtn = document.getElementById('pdfDownloadBtn');
+  var pdfOpenBtn = document.getElementById('pdfOpenBtn');
+  var pdfCloseBtn = document.getElementById('pdfCloseBtn');
+
+  function openPdfModal(title, viewUrl, embedUrl) {
+    pdfModalTitle.textContent = title;
+    pdfDownloadBtn.href = viewUrl.replace('/view', '/download');
+    pdfOpenBtn.href = viewUrl;
+    pdfFrame.src = embedUrl;
+    pdfLoading.style.display = 'flex';
+    pdfFrame.style.display = 'none';
+    pdfModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Hide loading when iframe loads
+    pdfFrame.onload = function() {
+      pdfLoading.style.display = 'none';
+      pdfFrame.style.display = 'block';
+    };
+  }
+
+  function closePdfModal() {
+    pdfModal.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(function() {
+      pdfFrame.src = '';
+    }, 300);
+  }
+
+  pdfCloseBtn.addEventListener('click', closePdfModal);
+  pdfModal.addEventListener('click', function(e) {
+    if (e.target === pdfModal) closePdfModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
+      closePdfModal();
+    }
+  });
+
+  // Render Info Akademik
+  var iGrid = document.getElementById('infoGrid');
+  infoList.forEach(function(info) {
+    var card = document.createElement('div');
+    card.className = 'info-card reveal show';
+    
+    var actionsHtml = '';
+    if (info.embeddable && info.link && info.link !== '#') {
+      actionsHtml = '<div class="info-actions">' +
+        '<button class="info-link" data-title="' + info.title + '" data-link="' + info.link + '">' +
+          '<i class="fas fa-eye"></i> Baca Surat' +
+        '</button>' +
+        '<a href="' + info.link + '" class="info-link-download" target="_blank">' +
+          '<i class="fas fa-external-link-alt"></i> Buka di Drive' +
+        '</a>' +
+      '</div>';
+    } else if (info.link && info.link !== '#') {
+      actionsHtml = '<div class="info-actions">' +
+        '<a href="' + info.link + '" class="info-link" target="_blank">' +
+          'Baca Selengkapnya <i class="fas fa-arrow-right"></i>' +
+        '</a>' +
+      '</div>';
+    }
+    
+    card.innerHTML = 
+      '<div class="info-header">' +
+        '<h4>' + info.title + '</h4>' +
+        '<p>' + info.subtitle + '</p>' +
+      '</div>' +
+      '<div class="info-body">' +
+        '<p>' + info.desc + '</p>' +
+        actionsHtml +
+      '</div>';
+    iGrid.appendChild(card);
+  });
+
+  // Event listener untuk tombol "Baca Surat"
+  document.querySelectorAll('.info-link[data-link]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var title = this.getAttribute('data-title');
+      var link = this.getAttribute('data-link');
+      var embedUrl = getEmbedUrl(link);
+      openPdfModal(title, link, embedUrl);
+    });
+  });
+
+  // Counter Animation
+  var counters = document.querySelectorAll('.stat-num');
+  counters.forEach(function(el) {
+    var target = parseInt(el.getAttribute('data-count'));
+    var cur = 0;
+    var step = target / 50;
+    var t = setInterval(function() {
+      cur += step;
+      if (cur >= target) {
+        el.textContent = target;
+        clearInterval(t);
+      } else {
+        el.textContent = Math.floor(cur);
+      }
+    }, 30);
+  });
+
+  // Scroll Reveal
+  var revealElements = document.querySelectorAll('.reveal');
+  revealElements.forEach(function(el) {
+    el.classList.add('show');
+  });
+</script>
+</body>
+</html>
